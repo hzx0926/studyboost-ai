@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GPA Calculator</title>
+
+<style>
+body {
+font-family: Arial;
+text-align: center;
+background: #f4f6f8;
+}
+
+.container {
+margin-top: 40px;
+background: white;
+display: inline-block;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+input {
+margin: 5px;
+padding: 8px;
+width: 80px;
+}
+
+button {
+padding: 10px 15px;
+margin-top: 10px;
+cursor: pointer;
+}
+
+#result {
+margin-top: 15px;
+font-size: 18px;
+font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📊 GPA Calculator</h1>
+
+<div class="container">
+
+<p>Enter your grades (A=4, B=3, C=2, D=1)</p>
+
+<input id="g1" placeholder="Grade 1">
+<input id="g2" placeholder="Grade 2">
+<input id="g3" placeholder="Grade 3">
+
+<br>
+
+<button onclick="calculateGPA()">Calculate</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+function convert(grade) {
+grade = grade.toUpperCase();
+
+if (grade === "A") return 4;
+if (grade === "B") return 3;
+if (grade === "C") return 2;
+if (grade === "D") return 1;
+return 0;
+}
+
+function calculateGPA() {
+let g1 = convert(document.getElementById("g1").value);
+let g2 = convert(document.getElementById("g2").value);
+let g3 = convert(document.getElementById("g3").value);
+
+let avg = (g1 + g2 + g3) / 3;
+
+document.getElementById("result").innerText =
+"Your GPA is: " + avg.toFixed(2);
+}
+</script>
+
+</body>
+</html>
