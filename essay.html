@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Essay Helper</title>
+
+<style>
+body {
+font-family: Arial;
+text-align: center;
+background: #f4f6f8;
+}
+
+.box {
+margin-top: 40px;
+background: white;
+display: inline-block;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+width: 80%;
+max-width: 600px;
+}
+
+textarea {
+width: 90%;
+height: 120px;
+padding: 10px;
+margin-top: 10px;
+}
+
+button {
+padding: 10px 15px;
+margin-top: 10px;
+cursor: pointer;
+}
+
+#output {
+margin-top: 20px;
+text-align: left;
+white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<h1>✍️ AI Essay Helper</h1>
+
+<div class="box">
+
+<p>Paste your essay draft below:</p>
+
+<textarea id="input"></textarea>
+
+<br>
+
+<button onclick="improve()">Improve Essay</button>
+
+<div id="output"></div>
+
+</div>
+
+<script>
+function improve() {
+let text = document.getElementById("input").value;
+
+if (!text) {
+document.getElementById("output").innerText = "Please enter text first.";
+return;
+}
+
+let improved =
+"Improved Version:\n\n" +
+text +
+"\n\n(✔ Suggestion: Improve sentence structure, use stronger vocabulary, and check grammar.)";
+
+document.getElementById("output").innerText = improved;
+}
+</script>
+
+</body>
+</html>
