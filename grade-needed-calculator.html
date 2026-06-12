@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grade Needed Calculator | Calculate Your Required Final Exam Score</title>
+
+<meta name="description" content="Free Grade Needed Calculator. Find out what score you need on your final exam to reach your target course grade.">
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#1a73e8;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    background:#eef5ff;
+    border-radius:8px;
+    font-size:18px;
+    text-align:center;
+}
+
+.info{
+    margin-top:25px;
+    line-height:1.7;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎯 Grade Needed Calculator</h1>
+
+<p>
+Calculate the score you need on your final exam to reach your target course grade.
+</p>
+
+<label>Current Course Grade (%)</label> <input type="number" id="currentGrade" placeholder="Example: 82">
+
+<label>Final Exam Weight (%)</label> <input type="number" id="finalWeight" placeholder="Example: 30">
+
+<label>Desired Final Course Grade (%)</label> <input type="number" id="targetGrade" placeholder="Example: 90">
+
+<button onclick="calculateGrade()">
+Calculate Required Exam Score
+</button>
+
+<div class="result" id="result">
+Enter your information above.
+</div>
+
+<div class="info">
+
+<h2>How This Calculator Works</h2>
+
+<p>
+This calculator estimates the score you need on your final exam based on:
+</p>
+
+<ul>
+<li>Your current course grade</li>
+<li>The weight of the final exam</li>
+<li>Your desired final course grade</li>
+</ul>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateGrade(){
+
+let currentGrade =
+parseFloat(document.getElementById("currentGrade").value);
+
+let finalWeight =
+parseFloat(document.getElementById("finalWeight").value);
+
+let targetGrade =
+parseFloat(document.getElementById("targetGrade").value);
+
+if(
+isNaN(currentGrade) ||
+isNaN(finalWeight) ||
+isNaN(targetGrade)
+){
+document.getElementById("result").innerHTML =
+"Please fill in all fields.";
+return;
+}
+
+let weightDecimal = finalWeight / 100;
+
+let neededScore =
+(targetGrade - currentGrade * (1 - weightDecimal))
+/ weightDecimal;
+
+if(neededScore > 100){
+
+document.getElementById("result").innerHTML =
+"⚠️ You would need " +
+neededScore.toFixed(1) +
+"%. This goal may not be achievable.";
+
+}
+else if(neededScore <= 0){
+
+document.getElementById("result").innerHTML =
+"🎉 You have already reached your target grade.";
+
+}
+else{
+
+document.getElementById("result").innerHTML =
+"✅ You need <strong>" +
+neededScore.toFixed(1) +
+"%</strong> on the final exam.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
